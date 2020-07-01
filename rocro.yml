@@ -41,9 +41,6 @@ inspecode:
   pytest:
     thresholds: { num-issues: 999 }
 
-  shellcheck:
-    thresholds: { num-issues: 999 }
-
   #understand:
   #  thresholds: { num-issues: 999 }
 
