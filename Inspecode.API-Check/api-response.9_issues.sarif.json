@@ -1,0 +1,392 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "fossology",
+          "fullName": "FOSSology"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "jscpd",
+          "fullName": "jscpd"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "autopep8",
+          "fullName": "autopep8"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "yamllint/linter.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        }
+      ],
+      "results": [
+        {
+          "level": "error",
+          "message": {
+            "text": "This file should be formatted by autopep8."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/linter.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 90
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "misspell",
+          "fullName": "misspell"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": ":complexity:lizard",
+          "fullName": "Complexity (Lizard)"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "yamllint/rules/indentation.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/config.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/truthy.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/quoted_strings.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/linter.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/linter.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/linter.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/parser.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/braces.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        }
+      ],
+      "results": [
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check_scalar_indentation"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/indentation.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 224,
+                  "endLine": 298,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at parse"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/config.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 73,
+                  "endLine": 112,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/truthy.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 135,
+                  "endLine": 149,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at VALIDATE"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/quoted_strings.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 125,
+                  "endLine": 131,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/linter.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 83,
+                  "endLine": 104,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/linter.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 110,
+                  "endLine": 123,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at _run"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/linter.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 188,
+                  "endLine": 219,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at comments_between_tokens"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/parser.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 91,
+                  "endLine": 120,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/braces.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 110,
+                  "endLine": 143,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "cpd",
+          "fullName": "CPD"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    }
+  ]
+}

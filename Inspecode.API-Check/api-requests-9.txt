@@ -1,0 +1,18 @@
+* Create a new job
+  ----------
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       -d '{"branch":"inspecode.api-check","commit":"8888ca5c5b4a20d59ddc0f27dea2788addecf224"}' \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint
+  ----------
+
+* Get a job status
+  ----------
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/status
+  ----------
+
+* Get issues
+  ----------
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues
+  ----------
