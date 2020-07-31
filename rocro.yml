@@ -1,5 +1,26 @@
 ---
 inspecode:
+
+  global:
+    thresholds:
+      complexity: 6
+
   tools:
+
+    autopep8:
+      thresholds: { num-issues: 1 }
+
+    cpd:
+      thresholds: { num-issues: 4 }
+
+    fossology:
+      thresholds: { num-issues: 4 }
+
+    grep:
+      thresholds: { num-issues: 0 }
+
+    jscpd:
+      thresholds: { num-issues: 6 }
+
     misspell:
-      thresholds: { num-issues: 999 }
+      thresholds: { num-issues: 3 }
