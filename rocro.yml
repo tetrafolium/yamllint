@@ -1,0 +1,5 @@
+---
+inspecode:
+  tools:
+    misspell:
+      thresholds: { num-issues: 999 }
