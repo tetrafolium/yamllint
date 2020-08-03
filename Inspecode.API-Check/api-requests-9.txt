@@ -16,3 +16,22 @@
   curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
        https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues
   ----------
+
+* Get issues (with pagenation)
+  ----------
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=1
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=2
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=3
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=4
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=5
+  ----------
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=6
+  curl -H "X-API-Token: dce96642abf9872c198de5d968de2115" \
+       https://inspecode.rocro.com/api/1/jobs/github.com/tetrafolium/yamllint/9/issues?page=0
+  ----------

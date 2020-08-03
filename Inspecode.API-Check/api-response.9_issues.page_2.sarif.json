@@ -19,63 +19,70 @@
       "artifacts": [
         {
           "location": {
+            "uri": "yamllint/rules/brackets.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/colons.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/commas.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/comments.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/comments_indentation.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/document_end.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/octal_values.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/empty_values.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/line_length.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
             "uri": "yamllint/rules/indentation.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/config.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/rules/truthy.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/rules/quoted_strings.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/parser.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/rules/braces.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
@@ -85,40 +92,18 @@
         {
           "level": "warning",
           "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at check_scalar_indentation"
+            "text": "Cyclomatic complexity exceeds the threshold at check"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/indentation.py",
+                  "uri": "yamllint/rules/brackets.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 224,
-                  "endLine": 298,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at parse"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/config.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 73,
-                  "endLine": 112,
+                  "startLine": 111,
+                  "endLine": 145,
                   "sourceLanguage": "Python"
                 }
               }
@@ -135,12 +120,12 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/truthy.py",
+                  "uri": "yamllint/rules/colons.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 135,
-                  "endLine": 149,
+                  "startLine": 86,
+                  "endLine": 105,
                   "sourceLanguage": "Python"
                 }
               }
@@ -151,17 +136,17 @@
         {
           "level": "warning",
           "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at VALIDATE"
+            "text": "Cyclomatic complexity exceeds the threshold at check"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/quoted_strings.py",
+                  "uri": "yamllint/rules/commas.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 125,
+                  "startLine": 111,
                   "endLine": 131,
                   "sourceLanguage": "Python"
                 }
@@ -173,84 +158,18 @@
         {
           "level": "warning",
           "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
+            "text": "Cyclomatic complexity exceeds the threshold at check"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/linter.py",
+                  "uri": "yamllint/rules/comments.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 83,
-                  "endLine": 104,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 110,
-                  "endLine": 123,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at _run"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 188,
-                  "endLine": 219,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at comments_between_tokens"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/parser.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 91,
-                  "endLine": 120,
+                  "startLine": 82,
+                  "endLine": 106,
                   "sourceLanguage": "Python"
                 }
               }
@@ -267,12 +186,122 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/braces.py",
+                  "uri": "yamllint/rules/comments_indentation.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 110,
-                  "endLine": 143,
+                  "startLine": 101,
+                  "endLine": 139,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/document_end.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 88,
+                  "endLine": 107,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/octal_values.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 73,
+                  "endLine": 95,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/empty_values.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 82,
+                  "endLine": 96,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/line_length.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 127,
+                  "endLine": 149,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check_scalar_indentation.compute_expected_indent"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/indentation.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 228,
+                  "endLine": 272,
                   "sourceLanguage": "Python"
                 }
               }
@@ -340,38 +369,7 @@
             "text": "The directory into which the repo was cloned."
           }
         }
-      },
-      "artifacts": [
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        }
-      ],
-      "results": [
-        {
-          "level": "error",
-          "message": {
-            "text": "This file should be formatted by autopep8."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 90
-        }
-      ]
+      }
     },
     {
       "tool": {

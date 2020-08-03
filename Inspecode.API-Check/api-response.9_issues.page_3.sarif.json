@@ -19,63 +19,35 @@
       "artifacts": [
         {
           "location": {
-            "uri": "yamllint/rules/indentation.py",
+            "uri": "yamllint/rules/new_lines.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
         },
         {
           "location": {
-            "uri": "yamllint/config.py",
+            "uri": "yamllint/rules/key_duplicates.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
         },
         {
           "location": {
-            "uri": "yamllint/rules/truthy.py",
+            "uri": "yamllint/rules/key_ordering.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
         },
         {
           "location": {
-            "uri": "yamllint/rules/quoted_strings.py",
+            "uri": "yamllint/rules/line_length.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
         },
         {
           "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/parser.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        },
-        {
-          "location": {
-            "uri": "yamllint/rules/braces.py",
+            "uri": "yamllint/cli.py",
             "uriBaseId": "REPOROOT"
           },
           "sourceLanguage": "Python"
@@ -85,40 +57,18 @@
         {
           "level": "warning",
           "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at check_scalar_indentation"
+            "text": "Cyclomatic complexity exceeds the threshold at check"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/indentation.py",
+                  "uri": "yamllint/rules/new_lines.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 224,
-                  "endLine": 298,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at parse"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/config.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 73,
-                  "endLine": 112,
+                  "startLine": 36,
+                  "endLine": 46,
                   "sourceLanguage": "Python"
                 }
               }
@@ -135,122 +85,12 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/truthy.py",
+                  "uri": "yamllint/rules/key_duplicates.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
-                  "startLine": 135,
-                  "endLine": 149,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at VALIDATE"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/rules/quoted_strings.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 125,
-                  "endLine": 131,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 83,
-                  "endLine": 104,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at get_cosmetic_problems.process_comment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 110,
-                  "endLine": 123,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at _run"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 188,
-                  "endLine": 219,
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 50
-        },
-        {
-          "level": "warning",
-          "message": {
-            "text": "Cyclomatic complexity exceeds the threshold at comments_between_tokens"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/parser.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "startLine": 91,
-                  "endLine": 120,
+                  "startLine": 74,
+                  "endLine": 100,
                   "sourceLanguage": "Python"
                 }
               }
@@ -267,12 +107,56 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "yamllint/rules/braces.py",
+                  "uri": "yamllint/rules/key_ordering.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 85,
+                  "endLine": 109,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at check_inline_mapping"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/line_length.py",
                   "uriBaseId": "REPOROOT"
                 },
                 "region": {
                   "startLine": 110,
-                  "endLine": 143,
+                  "endLine": 124,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Cyclomatic complexity exceeds the threshold at show_problems"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/cli.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 88,
+                  "endLine": 113,
                   "sourceLanguage": "Python"
                 }
               }
@@ -295,7 +179,207 @@
             "text": "The directory into which the repo was cloned."
           }
         }
-      }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "tests/test_config.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "tests/test_config.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "tests/test_cli.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "tests/test_cli.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "tests/rules/test_indentation.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "tests/rules/test_indentation.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/key_duplicates.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/key_ordering.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        }
+      ],
+      "results": [
+        {
+          "level": "warning",
+          "message": {
+            "text": "Duplicated code found at 2 places"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_config.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 220,
+                  "endLine": 234,
+                  "sourceLanguage": "Python"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_config.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 281,
+                  "endLine": 295,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Duplicated code found at 2 places"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_cli.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 168,
+                  "endLine": 182,
+                  "sourceLanguage": "Python"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/test_cli.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 185,
+                  "endLine": 199,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Duplicated code found at 2 places"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/rules/test_indentation.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 1708,
+                  "endLine": 1724,
+                  "sourceLanguage": "Python"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tests/rules/test_indentation.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 2097,
+                  "endLine": 2113,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        },
+        {
+          "level": "warning",
+          "message": {
+            "text": "Duplicated code found at 2 places"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/key_duplicates.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 63,
+                  "endLine": 93,
+                  "sourceLanguage": "Python"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/key_ordering.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 74,
+                  "endLine": 104,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        }
+      ]
     },
     {
       "tool": {
@@ -325,7 +409,60 @@
             "text": "The directory into which the repo was cloned."
           }
         }
-      }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "yamllint/rules/key_duplicates.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        },
+        {
+          "location": {
+            "uri": "yamllint/rules/key_ordering.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        }
+      ],
+      "results": [
+        {
+          "level": "warning",
+          "message": {
+            "text": "Duplicated code found at 2 places"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/key_duplicates.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 63,
+                  "endLine": 93,
+                  "sourceLanguage": "Python"
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/rules/key_ordering.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "startLine": 74,
+                  "endLine": 104,
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 50
+        }
+      ]
     },
     {
       "tool": {
@@ -340,38 +477,7 @@
             "text": "The directory into which the repo was cloned."
           }
         }
-      },
-      "artifacts": [
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        }
-      ],
-      "results": [
-        {
-          "level": "error",
-          "message": {
-            "text": "This file should be formatted by autopep8."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 90
-        }
-      ]
+      }
     },
     {
       "tool": {

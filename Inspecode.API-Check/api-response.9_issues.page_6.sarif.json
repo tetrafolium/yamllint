@@ -1,0 +1,96 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "misspell",
+          "fullName": "misspell"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": ":complexity:lizard",
+          "fullName": "Complexity (Lizard)"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "cpd",
+          "fullName": "CPD"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "fossology",
+          "fullName": "FOSSology"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "jscpd",
+          "fullName": "jscpd"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "autopep8",
+          "fullName": "autopep8"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    }
+  ]
+}

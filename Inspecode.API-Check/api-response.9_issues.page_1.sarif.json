@@ -5,6 +5,82 @@
     {
       "tool": {
         "driver": {
+          "name": "jscpd",
+          "fullName": "jscpd"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "autopep8",
+          "fullName": "autopep8"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "yamllint/linter.py",
+            "uriBaseId": "REPOROOT"
+          },
+          "sourceLanguage": "Python"
+        }
+      ],
+      "results": [
+        {
+          "level": "error",
+          "message": {
+            "text": "This file should be formatted by autopep8."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "yamllint/linter.py",
+                  "uriBaseId": "REPOROOT"
+                },
+                "region": {
+                  "sourceLanguage": "Python"
+                }
+              }
+            }
+          ],
+          "rank": 90
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "misspell",
+          "fullName": "misspell"
+        }
+      },
+      "originalUriBaseIds": {
+        "REPOROOT": {
+          "description": {
+            "text": "The directory into which the repo was cloned."
+          }
+        }
+      }
+    },
+    {
+      "tool": {
+        "driver": {
           "name": ":complexity:lizard",
           "fullName": "Complexity (Lizard)"
         }
@@ -302,82 +378,6 @@
         "driver": {
           "name": "fossology",
           "fullName": "FOSSology"
-        }
-      },
-      "originalUriBaseIds": {
-        "REPOROOT": {
-          "description": {
-            "text": "The directory into which the repo was cloned."
-          }
-        }
-      }
-    },
-    {
-      "tool": {
-        "driver": {
-          "name": "jscpd",
-          "fullName": "jscpd"
-        }
-      },
-      "originalUriBaseIds": {
-        "REPOROOT": {
-          "description": {
-            "text": "The directory into which the repo was cloned."
-          }
-        }
-      }
-    },
-    {
-      "tool": {
-        "driver": {
-          "name": "autopep8",
-          "fullName": "autopep8"
-        }
-      },
-      "originalUriBaseIds": {
-        "REPOROOT": {
-          "description": {
-            "text": "The directory into which the repo was cloned."
-          }
-        }
-      },
-      "artifacts": [
-        {
-          "location": {
-            "uri": "yamllint/linter.py",
-            "uriBaseId": "REPOROOT"
-          },
-          "sourceLanguage": "Python"
-        }
-      ],
-      "results": [
-        {
-          "level": "error",
-          "message": {
-            "text": "This file should be formatted by autopep8."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "yamllint/linter.py",
-                  "uriBaseId": "REPOROOT"
-                },
-                "region": {
-                  "sourceLanguage": "Python"
-                }
-              }
-            }
-          ],
-          "rank": 90
-        }
-      ]
-    },
-    {
-      "tool": {
-        "driver": {
-          "name": "misspell",
-          "fullName": "misspell"
         }
       },
       "originalUriBaseIds": {
