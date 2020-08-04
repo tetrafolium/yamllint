@@ -11,11 +11,11 @@ inspecode:
     autopep8:
       thresholds: { num-issues: 1 }
 
-    flake8:
-      thresholds: { num-issues: 0 }
-
     cpd:
       thresholds: { num-issues: 4 }
+
+    flake8:
+      thresholds: { num-issues: 0 }
 
     fossology:
       thresholds: { num-issues: 4 }
