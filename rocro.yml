@@ -2,6 +2,7 @@
 inspecode:
 
   global:
+    ignore: [ 'Inspecode.API-Check/' ]
     thresholds:
       complexity: 15  # default
 
