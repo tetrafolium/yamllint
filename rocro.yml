@@ -11,6 +11,9 @@ inspecode:
     autopep8:
       thresholds: { num-issues: 1 }
 
+    flake8:
+      thresholds: { num-issues: 0 }
+
     cpd:
       thresholds: { num-issues: 4 }
 
@@ -25,3 +28,20 @@ inspecode:
 
     misspell:
       thresholds: { num-issues: 3 }
+
+    nose2:
+      thresholds: { num-issues: 0 }
+
+    prospector:
+      thresholds: { num-issues: 127 }
+
+    pycodestyle:
+      thresholds: { num-issues: 0 }
+
+    unused:
+      ignore: tests/
+      options: [ --single-occurrence, --all-likelihoods ]
+      thresholds: { num-issues: 16 }
+
+    yapf:
+      thresholds: { num-issues: 61 }
