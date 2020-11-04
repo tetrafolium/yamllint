@@ -43,8 +43,8 @@ inspecode:
     pytest:
       thresholds: { num-issues: 0 }
 
-    #understand:
-    #  thresholds: { num-issues: 999 }
+    # understand:
+    #   thresholds: { num-issues: 999 }
 
     unused:
       ignore: tests/
