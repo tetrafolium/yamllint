@@ -12,6 +12,9 @@ inspecode:
     flake8:
       thresholds: { num-issues: 0 }
 
+    # fortify:
+    #   thresholds: { num-issues: 999 }
+
     fossology:
       thresholds: { num-issues: 4 }
 
