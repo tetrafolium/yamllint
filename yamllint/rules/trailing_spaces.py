@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to forbid trailing spaces at the end of lines.
 
@@ -36,11 +35,9 @@ Use this rule to forbid trailing spaces at the end of lines.
     on lines 1 and 3         """ """
 """
 
-
 import string
 
 from yamllint.linter import LintProblem
-
 
 ID = 'trailing-spaces'
 TYPE = 'line'

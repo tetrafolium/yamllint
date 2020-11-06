@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to require a new line character (``\\n``) at the end of files.
 
@@ -23,9 +22,7 @@ All UNIX tools expect a new line at the end of files. Most text editors use
 this convention too.
 """
 
-
 from yamllint.linter import LintProblem
-
 
 ID = 'new-line-at-end-of-file'
 TYPE = 'line'

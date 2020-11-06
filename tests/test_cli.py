@@ -35,7 +35,6 @@ from yamllint import config
 
 class RunContext(object):
     """Context manager for ``cli.run()`` to capture exit code and streams."""
-
     def __init__(self, case):
         self.stdout = self.stderr = None
         self._raises_ctx = case.assertRaises(SystemExit)
@@ -63,35 +62,42 @@ class CommandLineTestCase(unittest.TestCase):
 
         cls.wd = build_temp_workspace({
             # .yaml file at root
-            'a.yaml': '---\n'
-                      '- 1   \n'
-                      '- 2',
+            'a.yaml':
+            '---\n'
+            '- 1   \n'
+            '- 2',
             # file with only one warning
-            'warn.yaml': 'key: value\n',
+            'warn.yaml':
+            'key: value\n',
             # .yml file at root
-            'empty.yml': '',
+            'empty.yml':
+            '',
             # file in dir
-            'sub/ok.yaml': '---\n'
-                           'key: value\n',
+            'sub/ok.yaml':
+            '---\n'
+            'key: value\n',
             # file in very nested dir
-            's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml': '---\n'
-                                                       'key: value\n'
-                                                       'key: other value\n',
+            's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml':
+            '---\n'
+            'key: value\n'
+            'key: other value\n',
             # empty dir
             'empty-dir': [],
             # non-YAML file
-            'no-yaml.json': '---\n'
-                            'key: value\n',
+            'no-yaml.json':
+            '---\n'
+            'key: value\n',
             # non-ASCII chars
-            'non-ascii/éçäγλνπ¥/utf-8': (
-                u'---\n'
-                u'- hétérogénéité\n'
-                u'# 19.99 €\n'
-                u'- お早う御座います。\n'
-                u'# الأَبْجَدِيَّة العَرَبِيَّة\n').encode('utf-8'),
+            'non-ascii/éçäγλνπ¥/utf-8':
+            (u'---\n'
+             u'- hétérogénéité\n'
+             u'# 19.99 €\n'
+             u'- お早う御座います。\n'
+             u'# الأَبْجَدِيَّة العَرَبِيَّة\n').encode('utf-8'),
             # dos line endings yaml
-            'dos.yml': '---\r\n'
-                       'dos: true',
+            'dos.yml':
+            '---\r\n'
+            'dos: true',
         })
 
     @classmethod
@@ -104,105 +110,111 @@ class CommandLineTestCase(unittest.TestCase):
         conf = config.YamlLintConfig('extends: default')
         self.assertEqual(
             sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'a.yaml'),
-             os.path.join(self.wd, 'dos.yml'),
-             os.path.join(self.wd, 'empty.yml'),
-             os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
-             os.path.join(self.wd, 'sub/ok.yaml'),
-             os.path.join(self.wd, 'warn.yaml')],
+            [
+                os.path.join(self.wd, 'a.yaml'),
+                os.path.join(self.wd, 'dos.yml'),
+                os.path.join(self.wd, 'empty.yml'),
+                os.path.join(self.wd,
+                             's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
+                os.path.join(self.wd, 'sub/ok.yaml'),
+                os.path.join(self.wd, 'warn.yaml')
+            ],
         )
 
-        items = [os.path.join(self.wd, 'sub/ok.yaml'),
-                 os.path.join(self.wd, 'empty-dir')]
+        items = [
+            os.path.join(self.wd, 'sub/ok.yaml'),
+            os.path.join(self.wd, 'empty-dir')
+        ]
         self.assertEqual(
             sorted(cli.find_files_recursively(items, conf)),
             [os.path.join(self.wd, 'sub/ok.yaml')],
         )
 
-        items = [os.path.join(self.wd, 'empty.yml'),
-                 os.path.join(self.wd, 's')]
+        items = [
+            os.path.join(self.wd, 'empty.yml'),
+            os.path.join(self.wd, 's')
+        ]
         self.assertEqual(
             sorted(cli.find_files_recursively(items, conf)),
-            [os.path.join(self.wd, 'empty.yml'),
-             os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml')],
+            [
+                os.path.join(self.wd, 'empty.yml'),
+                os.path.join(self.wd,
+                             's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml')
+            ],
         )
 
-        items = [os.path.join(self.wd, 'sub'),
-                 os.path.join(self.wd, '/etc/another/file')]
+        items = [
+            os.path.join(self.wd, 'sub'),
+            os.path.join(self.wd, '/etc/another/file')
+        ]
         self.assertEqual(
             sorted(cli.find_files_recursively(items, conf)),
-            [os.path.join(self.wd, '/etc/another/file'),
-             os.path.join(self.wd, 'sub/ok.yaml')],
+            [
+                os.path.join(self.wd, '/etc/another/file'),
+                os.path.join(self.wd, 'sub/ok.yaml')
+            ],
         )
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'*.yaml\' \n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'a.yaml'),
-             os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
-             os.path.join(self.wd, 'sub/ok.yaml'),
-             os.path.join(self.wd, 'warn.yaml')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)), [
+            os.path.join(self.wd, 'a.yaml'),
+            os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
+            os.path.join(self.wd, 'sub/ok.yaml'),
+            os.path.join(self.wd, 'warn.yaml')
+        ])
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'*.yml\'\n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'dos.yml'),
-             os.path.join(self.wd, 'empty.yml')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)), [
+            os.path.join(self.wd, 'dos.yml'),
+            os.path.join(self.wd, 'empty.yml')
+        ])
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'*.json\'\n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'no-yaml.json')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)),
+                         [os.path.join(self.wd, 'no-yaml.json')])
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'*\'\n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'a.yaml'),
-             os.path.join(self.wd, 'dos.yml'),
-             os.path.join(self.wd, 'empty.yml'),
-             os.path.join(self.wd, 'no-yaml.json'),
-             os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8'),
-             os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
-             os.path.join(self.wd, 'sub/ok.yaml'),
-             os.path.join(self.wd, 'warn.yaml')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)), [
+            os.path.join(self.wd, 'a.yaml'),
+            os.path.join(self.wd, 'dos.yml'),
+            os.path.join(self.wd, 'empty.yml'),
+            os.path.join(self.wd, 'no-yaml.json'),
+            os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8'),
+            os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
+            os.path.join(self.wd, 'sub/ok.yaml'),
+            os.path.join(self.wd, 'warn.yaml')
+        ])
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'*.yaml\'\n'
                                      '  - \'*\'\n'
                                      '  - \'**\'\n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'a.yaml'),
-             os.path.join(self.wd, 'dos.yml'),
-             os.path.join(self.wd, 'empty.yml'),
-             os.path.join(self.wd, 'no-yaml.json'),
-             os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8'),
-             os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
-             os.path.join(self.wd, 'sub/ok.yaml'),
-             os.path.join(self.wd, 'warn.yaml')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)), [
+            os.path.join(self.wd, 'a.yaml'),
+            os.path.join(self.wd, 'dos.yml'),
+            os.path.join(self.wd, 'empty.yml'),
+            os.path.join(self.wd, 'no-yaml.json'),
+            os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8'),
+            os.path.join(self.wd, 's/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'),
+            os.path.join(self.wd, 'sub/ok.yaml'),
+            os.path.join(self.wd, 'warn.yaml')
+        ])
 
         conf = config.YamlLintConfig('extends: default\n'
                                      'yaml-files:\n'
                                      '  - \'s/**\'\n'
                                      '  - \'**/utf-8\'\n')
-        self.assertEqual(
-            sorted(cli.find_files_recursively([self.wd], conf)),
-            [os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8')]
-        )
+        self.assertEqual(sorted(cli.find_files_recursively([self.wd], conf)),
+                         [os.path.join(self.wd, 'non-ascii/éçäγλνπ¥/utf-8')])
 
     def test_run_with_bad_arguments(self):
         with RunContext(self) as ctx:
@@ -224,8 +236,7 @@ class CommandLineTestCase(unittest.TestCase):
         self.assertRegexpMatches(
             ctx.stderr.splitlines()[-1],
             r'^yamllint: error: argument -d\/--config-data: '
-            r'not allowed with argument -c\/--config-file$'
-        )
+            r'not allowed with argument -c\/--config-file$')
 
         # checks if reading from stdin and files are mutually exclusive
         with RunContext(self) as ctx:
@@ -326,10 +337,11 @@ class CommandLineTestCase(unittest.TestCase):
         with RunContext(self) as ctx:
             cli.run(('-f', 'parsable', path))
         self.assertEqual(ctx.returncode, 1)
-        self.assertEqual(ctx.stdout, (
-            '%s:2:4: [error] trailing spaces (trailing-spaces)\n'
-            '%s:3:4: [error] no new line character at the end of file '
-            '(new-line-at-end-of-file)\n' % (path, path)))
+        self.assertEqual(
+            ctx.stdout,
+            ('%s:2:4: [error] trailing spaces (trailing-spaces)\n'
+             '%s:3:4: [error] no new line character at the end of file '
+             '(new-line-at-end-of-file)\n' % (path, path)))
         self.assertEqual(ctx.stderr, '')
 
     def test_run_one_warning(self):
@@ -377,16 +389,18 @@ class CommandLineTestCase(unittest.TestCase):
         self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr), (0, '', ''))
 
     def test_run_multiple_files(self):
-        items = [os.path.join(self.wd, 'empty.yml'),
-                 os.path.join(self.wd, 's')]
+        items = [
+            os.path.join(self.wd, 'empty.yml'),
+            os.path.join(self.wd, 's')
+        ]
         path = items[1] + '/s/s/s/s/s/s/s/s/s/s/s/s/s/s/file.yaml'
 
         with RunContext(self) as ctx:
             cli.run(['-f', 'parsable'] + items)
         self.assertEqual((ctx.returncode, ctx.stderr), (1, ''))
-        self.assertEqual(ctx.stdout, (
-            '%s:3:1: [error] duplication of key "key" in mapping '
-            '(key-duplicates)\n') % path)
+        self.assertEqual(
+            ctx.stdout, ('%s:3:1: [error] duplication of key "key" in mapping '
+                         '(key-duplicates)\n') % path)
 
     def test_run_piped_output_nocolor(self):
         path = os.path.join(self.wd, 'a.yaml')
@@ -394,12 +408,13 @@ class CommandLineTestCase(unittest.TestCase):
         with RunContext(self) as ctx:
             cli.run((path, ))
         self.assertEqual((ctx.returncode, ctx.stderr), (1, ''))
-        self.assertEqual(ctx.stdout, (
-            '%s\n'
-            '  2:4       error    trailing spaces  (trailing-spaces)\n'
-            '  3:4       error    no new line character at the end of file  '
-            '(new-line-at-end-of-file)\n'
-            '\n' % path))
+        self.assertEqual(
+            ctx.stdout,
+            ('%s\n'
+             '  2:4       error    trailing spaces  (trailing-spaces)\n'
+             '  3:4       error    no new line character at the end of file  '
+             '(new-line-at-end-of-file)\n'
+             '\n' % path))
 
     def test_run_default_format_output_in_tty(self):
         path = os.path.join(self.wd, 'a.yaml')
@@ -425,14 +440,14 @@ class CommandLineTestCase(unittest.TestCase):
         sys.stderr.close()
         output.close()
 
-        self.assertEqual(out, (
-            '\033[4m%s\033[0m\n'
-            '  \033[2m2:4\033[0m       \033[31merror\033[0m    '
-            'trailing spaces  \033[2m(trailing-spaces)\033[0m\n'
-            '  \033[2m3:4\033[0m       \033[31merror\033[0m    '
-            'no new line character at the end of file  '
-            '\033[2m(new-line-at-end-of-file)\033[0m\n'
-            '\n' % path))
+        self.assertEqual(out,
+                         ('\033[4m%s\033[0m\n'
+                          '  \033[2m2:4\033[0m       \033[31merror\033[0m    '
+                          'trailing spaces  \033[2m(trailing-spaces)\033[0m\n'
+                          '  \033[2m3:4\033[0m       \033[31merror\033[0m    '
+                          'no new line character at the end of file  '
+                          '\033[2m(new-line-at-end-of-file)\033[0m\n'
+                          '\n' % path))
 
     def test_run_default_format_output_without_tty(self):
         path = os.path.join(self.wd, 'a.yaml')
@@ -445,8 +460,8 @@ class CommandLineTestCase(unittest.TestCase):
             '  3:4       error    no new line character at the end of file  '
             '(new-line-at-end-of-file)\n'
             '\n' % path)
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))
 
     def test_run_auto_output_without_tty_output(self):
         path = os.path.join(self.wd, 'a.yaml')
@@ -459,40 +474,36 @@ class CommandLineTestCase(unittest.TestCase):
             '  3:4       error    no new line character at the end of file  '
             '(new-line-at-end-of-file)\n'
             '\n' % path)
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))
 
     def test_run_format_colored(self):
         path = os.path.join(self.wd, 'a.yaml')
 
         with RunContext(self) as ctx:
             cli.run((path, '--format', 'colored'))
-        expected_out = (
-            '\033[4m%s\033[0m\n'
-            '  \033[2m2:4\033[0m       \033[31merror\033[0m    '
-            'trailing spaces  \033[2m(trailing-spaces)\033[0m\n'
-            '  \033[2m3:4\033[0m       \033[31merror\033[0m    '
-            'no new line character at the end of file  '
-            '\033[2m(new-line-at-end-of-file)\033[0m\n'
-            '\n' % path)
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        expected_out = ('\033[4m%s\033[0m\n'
+                        '  \033[2m2:4\033[0m       \033[31merror\033[0m    '
+                        'trailing spaces  \033[2m(trailing-spaces)\033[0m\n'
+                        '  \033[2m3:4\033[0m       \033[31merror\033[0m    '
+                        'no new line character at the end of file  '
+                        '\033[2m(new-line-at-end-of-file)\033[0m\n'
+                        '\n' % path)
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))
 
     def test_run_read_from_stdin(self):
         # prepares stdin with an invalid yaml string so that we can check
         # for its specific error, and be assured that stdin was read
         self.addCleanup(setattr, sys, 'stdin', sys.__stdin__)
-        sys.stdin = StringIO(
-            'I am a string\n'
-            'therefore: I am an error\n')
+        sys.stdin = StringIO('I am a string\n' 'therefore: I am an error\n')
 
         with RunContext(self) as ctx:
             cli.run(('-', '-f', 'parsable'))
-        expected_out = (
-            'stdin:2:10: [error] syntax error: '
-            'mapping values are not allowed here (syntax)\n')
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        expected_out = ('stdin:2:10: [error] syntax error: '
+                        'mapping values are not allowed here (syntax)\n')
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))
 
     def test_run_no_warnings(self):
         path = os.path.join(self.wd, 'a.yaml')
@@ -505,8 +516,8 @@ class CommandLineTestCase(unittest.TestCase):
             '  3:4       error    no new line character at the end of file  '
             '(new-line-at-end-of-file)\n'
             '\n' % path)
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))
 
         path = os.path.join(self.wd, 'warn.yaml')
 
@@ -535,5 +546,5 @@ class CommandLineTestCase(unittest.TestCase):
             '  1:4       error    wrong new line character: expected \\n'
             '  (new-lines)\n'
             '\n' % path)
-        self.assertEqual(
-            (ctx.returncode, ctx.stdout, ctx.stderr), (1, expected_out, ''))
+        self.assertEqual((ctx.returncode, ctx.stdout, ctx.stderr),
+                         (1, expected_out, ''))

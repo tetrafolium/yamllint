@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to forbid any string values that are not quoted, or to prevent
 quoted strings without needing it. You can also enforce the type of the quote
@@ -112,14 +111,18 @@ from yamllint.linter import LintProblem
 
 ID = 'quoted-strings'
 TYPE = 'token'
-CONF = {'quote-type': ('any', 'single', 'double'),
-        'required': (True, False, 'only-when-needed'),
-        'extra-required': [str],
-        'extra-allowed': [str]}
-DEFAULT = {'quote-type': 'any',
-           'required': True,
-           'extra-required': [],
-           'extra-allowed': []}
+CONF = {
+    'quote-type': ('any', 'single', 'double'),
+    'required': (True, False, 'only-when-needed'),
+    'extra-required': [str],
+    'extra-allowed': [str]
+}
+DEFAULT = {
+    'quote-type': 'any',
+    'required': True,
+    'extra-required': [],
+    'extra-allowed': []
+}
 
 
 def VALIDATE(conf):
@@ -135,9 +138,9 @@ DEFAULT_SCALAR_TAG = u'tag:yaml.org,2002:str'
 
 
 def _quote_match(quote_type, token_style):
-    return ((quote_type == 'any') or
-            (quote_type == 'single' and token_style == "'") or
-            (quote_type == 'double' and token_style == '"'))
+    return ((quote_type == 'any')
+            or (quote_type == 'single' and token_style == "'")
+            or (quote_type == 'double' and token_style == '"'))
 
 
 def _quotes_are_needed(string):
@@ -148,8 +151,8 @@ def _quotes_are_needed(string):
         loader.get_token()
     try:
         a, b = loader.get_token(), loader.get_token()
-        if (isinstance(a, yaml.ScalarToken) and a.style is None and
-                isinstance(b, yaml.BlockEndToken)):
+        if (isinstance(a, yaml.ScalarToken) and a.style is None
+                and isinstance(b, yaml.BlockEndToken)):
             return False
         return True
     except yaml.scanner.ScannerError:
@@ -157,16 +160,16 @@ def _quotes_are_needed(string):
 
 
 def check(conf, token, prev, next, nextnext, context):
-    if not (isinstance(token, yaml.tokens.ScalarToken) and
-            isinstance(prev, (yaml.BlockEntryToken, yaml.FlowEntryToken,
-                              yaml.FlowSequenceStartToken, yaml.TagToken,
-                              yaml.ValueToken))):
+    if not (isinstance(token, yaml.tokens.ScalarToken) and isinstance(
+            prev,
+        (yaml.BlockEntryToken, yaml.FlowEntryToken,
+         yaml.FlowSequenceStartToken, yaml.TagToken, yaml.ValueToken))):
 
         return
 
     # Ignore explicit types, e.g. !!str testtest or !!int 42
-    if (prev and isinstance(prev, yaml.tokens.TagToken) and
-            prev.value[0] == '!!'):
+    if (prev and isinstance(prev, yaml.tokens.TagToken)
+            and prev.value[0] == '!!'):
         return
 
     # Ignore numbers, booleans, etc.
@@ -195,20 +198,20 @@ def check(conf, token, prev, next, nextnext, context):
             msg = "string value is not quoted with %s quotes" % quote_type
 
         elif not token.style:
-            is_extra_required = any(re.search(r, token.value)
-                                    for r in conf['extra-required'])
+            is_extra_required = any(
+                re.search(r, token.value) for r in conf['extra-required'])
             if is_extra_required:
                 msg = "string value is not quoted"
 
     elif conf['required'] == 'only-when-needed':
 
         # Quotes are not strictly needed here
-        if (token.style and tag == DEFAULT_SCALAR_TAG and token.value and
-                not _quotes_are_needed(token.value)):
-            is_extra_required = any(re.search(r, token.value)
-                                    for r in conf['extra-required'])
-            is_extra_allowed = any(re.search(r, token.value)
-                                   for r in conf['extra-allowed'])
+        if (token.style and tag == DEFAULT_SCALAR_TAG and token.value
+                and not _quotes_are_needed(token.value)):
+            is_extra_required = any(
+                re.search(r, token.value) for r in conf['extra-required'])
+            is_extra_allowed = any(
+                re.search(r, token.value) for r in conf['extra-allowed'])
             if not (is_extra_required or is_extra_allowed):
                 msg = "string value is redundantly quoted with %s quotes" % (
                     quote_type)
@@ -224,7 +227,5 @@ def check(conf, token, prev, next, nextnext, context):
                 msg = "string value is not quoted"
 
     if msg is not None:
-        yield LintProblem(
-            token.start_mark.line + 1,
-            token.start_mark.column + 1,
-            msg)
+        yield LintProblem(token.start_mark.line + 1,
+                          token.start_mark.column + 1, msg)

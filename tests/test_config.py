@@ -55,8 +55,7 @@ class SimpleConfigTestCase(unittest.TestCase):
                                   '  this-one-does-not-exist: enable\n')
 
     def test_missing_option(self):
-        c = config.YamlLintConfig('rules:\n'
-                                  '  colons: enable\n')
+        c = config.YamlLintConfig('rules:\n' '  colons: enable\n')
         self.assertEqual(c.rules['colons']['max-spaces-before'], 0)
         self.assertEqual(c.rules['colons']['max-spaces-after'], 1)
 
@@ -119,9 +118,11 @@ class SimpleConfigTestCase(unittest.TestCase):
         c = config.YamlLintConfig('rules:\n'
                                   '  colons: enable\n'
                                   '  hyphens: disable\n')
-        self.assertEqual(c.rules['colons'], {'level': 'error',
-                                             'max-spaces-after': 1,
-                                             'max-spaces-before': 0})
+        self.assertEqual(c.rules['colons'], {
+            'level': 'error',
+            'max-spaces-after': 1,
+            'max-spaces-before': 0
+        })
         self.assertEqual(c.rules['hyphens'], False)
 
     def test_validate_rule_conf(self):
@@ -150,7 +151,10 @@ class SimpleConfigTestCase(unittest.TestCase):
         config.validate_rule_conf(Rule, {'a': True})
         config.validate_rule_conf(Rule, {'b': 0})
         self.assertRaises(config.YamlLintConfigError,
-                          config.validate_rule_conf, Rule, {'a': 1, 'b': 0})
+                          config.validate_rule_conf, Rule, {
+                              'a': 1,
+                              'b': 0
+                          })
 
         Rule.CONF = {'choice': (True, 88, 'str')}
         Rule.DEFAULT = {'choice': 88}
@@ -184,8 +188,7 @@ class SimpleConfigTestCase(unittest.TestCase):
                           config.validate_rule_conf, Rule,
                           {'multiple': 'item1'})
         self.assertRaises(config.YamlLintConfigError,
-                          config.validate_rule_conf, Rule,
-                          {'multiple': ['']})
+                          config.validate_rule_conf, Rule, {'multiple': ['']})
         self.assertRaises(config.YamlLintConfigError,
                           config.validate_rule_conf, Rule,
                           {'multiple': ['item1', 4]})
@@ -294,9 +297,7 @@ class ExtendedConfigTestCase(unittest.TestCase):
 
     def test_extend_recursive_default_values(self):
         with tempfile.NamedTemporaryFile('w') as f:
-            f.write('rules:\n'
-                    '  braces:\n'
-                    '    max-spaces-inside: 1248\n')
+            f.write('rules:\n' '  braces:\n' '    max-spaces-inside: 1248\n')
             f.flush()
             c = config.YamlLintConfig('extends: ' + f.name + '\n'
                                       'rules:\n'
@@ -309,9 +310,7 @@ class ExtendedConfigTestCase(unittest.TestCase):
         self.assertEqual(c.rules['braces']['max-spaces-inside-empty'], -1)
 
         with tempfile.NamedTemporaryFile('w') as f:
-            f.write('rules:\n'
-                    '  colons:\n'
-                    '    max-spaces-before: 1337\n')
+            f.write('rules:\n' '  colons:\n' '    max-spaces-before: 1337\n')
             f.flush()
             c = config.YamlLintConfig('extends: ' + f.name + '\n'
                                       'rules:\n'
@@ -322,9 +321,7 @@ class ExtendedConfigTestCase(unittest.TestCase):
 
         with tempfile.NamedTemporaryFile('w') as f1, \
                 tempfile.NamedTemporaryFile('w') as f2:
-            f1.write('rules:\n'
-                     '  colons:\n'
-                     '    max-spaces-before: 1337\n')
+            f1.write('rules:\n' '  colons:\n' '    max-spaces-before: 1337\n')
             f1.flush()
             f2.write('extends: ' + f1.name + '\n'
                      'rules:\n'
@@ -400,33 +397,44 @@ class IgnorePathConfigTestCase(unittest.TestCase):
                     '-    lonely hyphen\n')
 
         cls.wd = build_temp_workspace({
-            'bin/file.lint-me-anyway.yaml': bad_yaml,
-            'bin/file.yaml': bad_yaml,
-            'file-at-root.yaml': bad_yaml,
-            'file.dont-lint-me.yaml': bad_yaml,
-            'ign-dup/file.yaml': bad_yaml,
-            'ign-dup/sub/dir/file.yaml': bad_yaml,
-            'ign-trail/file.yaml': bad_yaml,
-            'include/ign-dup/sub/dir/file.yaml': bad_yaml,
-            's/s/ign-trail/file.yaml': bad_yaml,
-            's/s/ign-trail/s/s/file.yaml': bad_yaml,
-            's/s/ign-trail/s/s/file2.lint-me-anyway.yaml': bad_yaml,
-
-            '.yamllint': 'ignore: |\n'
-                         '  *.dont-lint-me.yaml\n'
-                         '  /bin/\n'
-                         '  !/bin/*.lint-me-anyway.yaml\n'
-                         '\n'
-                         'extends: default\n'
-                         '\n'
-                         'rules:\n'
-                         '  key-duplicates:\n'
-                         '    ignore: |\n'
-                         '      /ign-dup\n'
-                         '  trailing-spaces:\n'
-                         '    ignore: |\n'
-                         '      ign-trail\n'
-                         '      !*.lint-me-anyway.yaml\n',
+            'bin/file.lint-me-anyway.yaml':
+            bad_yaml,
+            'bin/file.yaml':
+            bad_yaml,
+            'file-at-root.yaml':
+            bad_yaml,
+            'file.dont-lint-me.yaml':
+            bad_yaml,
+            'ign-dup/file.yaml':
+            bad_yaml,
+            'ign-dup/sub/dir/file.yaml':
+            bad_yaml,
+            'ign-trail/file.yaml':
+            bad_yaml,
+            'include/ign-dup/sub/dir/file.yaml':
+            bad_yaml,
+            's/s/ign-trail/file.yaml':
+            bad_yaml,
+            's/s/ign-trail/s/s/file.yaml':
+            bad_yaml,
+            's/s/ign-trail/s/s/file2.lint-me-anyway.yaml':
+            bad_yaml,
+            '.yamllint':
+            'ignore: |\n'
+            '  *.dont-lint-me.yaml\n'
+            '  /bin/\n'
+            '  !/bin/*.lint-me-anyway.yaml\n'
+            '\n'
+            'extends: default\n'
+            '\n'
+            'rules:\n'
+            '  key-duplicates:\n'
+            '    ignore: |\n'
+            '      /ign-dup\n'
+            '  trailing-spaces:\n'
+            '    ignore: |\n'
+            '      ign-trail\n'
+            '      !*.lint-me-anyway.yaml\n',
         })
 
         cls.backup_wd = os.getcwd()
@@ -453,28 +461,30 @@ class IgnorePathConfigTestCase(unittest.TestCase):
         trailing = '[error] trailing spaces (trailing-spaces)'
         hyphen = '[error] too many spaces after hyphen (hyphens)'
 
-        self.assertEqual(out, '\n'.join((
-            './.yamllint:1:1: ' + docstart,
-            './bin/file.lint-me-anyway.yaml:3:3: ' + keydup,
-            './bin/file.lint-me-anyway.yaml:4:17: ' + trailing,
-            './bin/file.lint-me-anyway.yaml:5:5: ' + hyphen,
-            './file-at-root.yaml:3:3: ' + keydup,
-            './file-at-root.yaml:4:17: ' + trailing,
-            './file-at-root.yaml:5:5: ' + hyphen,
-            './ign-dup/file.yaml:4:17: ' + trailing,
-            './ign-dup/file.yaml:5:5: ' + hyphen,
-            './ign-dup/sub/dir/file.yaml:4:17: ' + trailing,
-            './ign-dup/sub/dir/file.yaml:5:5: ' + hyphen,
-            './ign-trail/file.yaml:3:3: ' + keydup,
-            './ign-trail/file.yaml:5:5: ' + hyphen,
-            './include/ign-dup/sub/dir/file.yaml:3:3: ' + keydup,
-            './include/ign-dup/sub/dir/file.yaml:4:17: ' + trailing,
-            './include/ign-dup/sub/dir/file.yaml:5:5: ' + hyphen,
-            './s/s/ign-trail/file.yaml:3:3: ' + keydup,
-            './s/s/ign-trail/file.yaml:5:5: ' + hyphen,
-            './s/s/ign-trail/s/s/file.yaml:3:3: ' + keydup,
-            './s/s/ign-trail/s/s/file.yaml:5:5: ' + hyphen,
-            './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:3:3: ' + keydup,
-            './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:4:17: ' + trailing,
-            './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:5:5: ' + hyphen,
-        )))
+        self.assertEqual(
+            out, '\n'.join((
+                './.yamllint:1:1: ' + docstart,
+                './bin/file.lint-me-anyway.yaml:3:3: ' + keydup,
+                './bin/file.lint-me-anyway.yaml:4:17: ' + trailing,
+                './bin/file.lint-me-anyway.yaml:5:5: ' + hyphen,
+                './file-at-root.yaml:3:3: ' + keydup,
+                './file-at-root.yaml:4:17: ' + trailing,
+                './file-at-root.yaml:5:5: ' + hyphen,
+                './ign-dup/file.yaml:4:17: ' + trailing,
+                './ign-dup/file.yaml:5:5: ' + hyphen,
+                './ign-dup/sub/dir/file.yaml:4:17: ' + trailing,
+                './ign-dup/sub/dir/file.yaml:5:5: ' + hyphen,
+                './ign-trail/file.yaml:3:3: ' + keydup,
+                './ign-trail/file.yaml:5:5: ' + hyphen,
+                './include/ign-dup/sub/dir/file.yaml:3:3: ' + keydup,
+                './include/ign-dup/sub/dir/file.yaml:4:17: ' + trailing,
+                './include/ign-dup/sub/dir/file.yaml:5:5: ' + hyphen,
+                './s/s/ign-trail/file.yaml:3:3: ' + keydup,
+                './s/s/ign-trail/file.yaml:5:5: ' + hyphen,
+                './s/s/ign-trail/s/s/file.yaml:3:3: ' + keydup,
+                './s/s/ign-trail/s/s/file.yaml:5:5: ' + hyphen,
+                './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:3:3: ' + keydup,
+                './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:4:17: ' +
+                trailing,
+                './s/s/ign-trail/s/s/file2.lint-me-anyway.yaml:5:5: ' + hyphen,
+            )))

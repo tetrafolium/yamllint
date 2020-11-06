@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to prevent values with octal numbers. In YAML, numbers that
 start with ``0`` are interpreted as octal, but this is not always wanted.
@@ -61,13 +60,10 @@ import yaml
 
 from yamllint.linter import LintProblem
 
-
 ID = 'octal-values'
 TYPE = 'token'
-CONF = {'forbid-implicit-octal': bool,
-        'forbid-explicit-octal': bool}
-DEFAULT = {'forbid-implicit-octal': True,
-           'forbid-explicit-octal': True}
+CONF = {'forbid-implicit-octal': bool, 'forbid-explicit-octal': bool}
+DEFAULT = {'forbid-implicit-octal': True, 'forbid-explicit-octal': True}
 
 
 def check(conf, token, prev, next, nextnext, context):
@@ -81,8 +77,7 @@ def check(conf, token, prev, next, nextnext, context):
                 if val.isdigit() and len(val) > 1 and val[0] == '0':
                     yield LintProblem(
                         token.start_mark.line + 1, token.end_mark.column + 1,
-                        'forbidden implicit octal value "%s"' %
-                        token.value)
+                        'forbidden implicit octal value "%s"' % token.value)
 
     if conf['forbid-explicit-octal']:
         if isinstance(token, yaml.tokens.ScalarToken):
@@ -91,5 +86,4 @@ def check(conf, token, prev, next, nextnext, context):
                 if len(val) > 2 and val[:2] == '0o' and val[2:].isdigit():
                     yield LintProblem(
                         token.start_mark.line + 1, token.end_mark.column + 1,
-                        'forbidden explicit octal value "%s"' %
-                        token.value)
+                        'forbidden explicit octal value "%s"' % token.value)

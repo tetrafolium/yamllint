@@ -41,17 +41,15 @@ class LinterTestCase(unittest.TestCase):
         self.assertRaises(TypeError, linter.run, 42, self.fake_config())
 
     def test_run_on_list(self):
-        self.assertRaises(TypeError, linter.run,
-                          ['h', 'e', 'l', 'l', 'o'], self.fake_config())
+        self.assertRaises(TypeError, linter.run, ['h', 'e', 'l', 'l', 'o'],
+                          self.fake_config())
 
     def test_run_on_non_ascii_chars(self):
-        s = (u'- hétérogénéité\n'
-             u'# 19.99 €\n')
+        s = (u'- hétérogénéité\n' u'# 19.99 €\n')
         linter.run(s, self.fake_config())
         linter.run(s.encode('utf-8'), self.fake_config())
         linter.run(s.encode('iso-8859-15'), self.fake_config())
 
-        s = (u'- お早う御座います。\n'
-             u'# الأَبْجَدِيَّة العَرَبِيَّة\n')
+        s = (u'- お早う御座います。\n' u'# الأَبْجَدِيَّة العَرَبِيَّة\n')
         linter.run(s, self.fake_config())
         linter.run(s.encode('utf-8'), self.fake_config())

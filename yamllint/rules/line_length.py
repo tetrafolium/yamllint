@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to set a limit to lines length.
 
@@ -91,20 +90,22 @@ recommend running yamllint with Python 3.
             http://localhost/very/very/very/very/very/very/very/very/long/url
 """
 
-
 import yaml
 
 from yamllint.linter import LintProblem
 
-
 ID = 'line-length'
 TYPE = 'line'
-CONF = {'max': int,
-        'allow-non-breakable-words': bool,
-        'allow-non-breakable-inline-mappings': bool}
-DEFAULT = {'max': 80,
-           'allow-non-breakable-words': True,
-           'allow-non-breakable-inline-mappings': False}
+CONF = {
+    'max': int,
+    'allow-non-breakable-words': bool,
+    'allow-non-breakable-inline-mappings': bool
+}
+DEFAULT = {
+    'max': 80,
+    'allow-non-breakable-words': True,
+    'allow-non-breakable-inline-mappings': False
+}
 
 
 def check_inline_mapping(line):
@@ -140,10 +141,11 @@ def check(conf, line):
                 if line.buffer.find(' ', start, line.end) == -1:
                     return
 
-                if (conf['allow-non-breakable-inline-mappings'] and
-                        check_inline_mapping(line)):
+                if (conf['allow-non-breakable-inline-mappings']
+                        and check_inline_mapping(line)):
                     return
 
-        yield LintProblem(line.line_no, conf['max'] + 1,
-                          'line too long (%d > %d characters)' %
-                          (line.end - line.start, conf['max']))
+        yield LintProblem(
+            line.line_no, conf['max'] + 1,
+            'line too long (%d > %d characters)' %
+            (line.end - line.start, conf['max']))

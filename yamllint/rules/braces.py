@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to control the number of spaces inside braces (``{`` and ``}``).
 
@@ -89,28 +88,32 @@ Use this rule to control the number of spaces inside braces (``{`` and ``}``).
     object: {}
 """
 
-
 import yaml
 
 from yamllint.rules.common import spaces_after, spaces_before
 
-
 ID = 'braces'
 TYPE = 'token'
-CONF = {'min-spaces-inside': int,
-        'max-spaces-inside': int,
-        'min-spaces-inside-empty': int,
-        'max-spaces-inside-empty': int}
-DEFAULT = {'min-spaces-inside': 0,
-           'max-spaces-inside': 0,
-           'min-spaces-inside-empty': -1,
-           'max-spaces-inside-empty': -1}
+CONF = {
+    'min-spaces-inside': int,
+    'max-spaces-inside': int,
+    'min-spaces-inside-empty': int,
+    'max-spaces-inside-empty': int
+}
+DEFAULT = {
+    'min-spaces-inside': 0,
+    'max-spaces-inside': 0,
+    'min-spaces-inside-empty': -1,
+    'max-spaces-inside-empty': -1
+}
 
 
 def check(conf, token, prev, next, nextnext, context):
-    if (isinstance(token, yaml.FlowMappingStartToken) and
-            isinstance(next, yaml.FlowMappingEndToken)):
-        problem = spaces_after(token, prev, next,
+    if (isinstance(token, yaml.FlowMappingStartToken)
+            and isinstance(next, yaml.FlowMappingEndToken)):
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                min=(conf['min-spaces-inside-empty']
                                     if conf['min-spaces-inside-empty'] != -1
                                     else conf['min-spaces-inside']),
@@ -123,7 +126,9 @@ def check(conf, token, prev, next, nextnext, context):
             yield problem
 
     elif isinstance(token, yaml.FlowMappingStartToken):
-        problem = spaces_after(token, prev, next,
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                min=conf['min-spaces-inside'],
                                max=conf['max-spaces-inside'],
                                min_desc='too few spaces inside braces',
@@ -132,9 +137,10 @@ def check(conf, token, prev, next, nextnext, context):
             yield problem
 
     elif (isinstance(token, yaml.FlowMappingEndToken) and
-            (prev is None or
-             not isinstance(prev, yaml.FlowMappingStartToken))):
-        problem = spaces_before(token, prev, next,
+          (prev is None or not isinstance(prev, yaml.FlowMappingStartToken))):
+        problem = spaces_before(token,
+                                prev,
+                                next,
                                 min=conf['min-spaces-inside'],
                                 max=conf['max-spaces-inside'],
                                 min_desc='too few spaces inside braces',

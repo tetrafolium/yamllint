@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to require or forbid the use of document end marker (``...``).
 
@@ -73,11 +72,9 @@ Use this rule to require or forbid the use of document end marker (``...``).
     - is: another one
 """
 
-
 import yaml
 
 from yamllint.linter import LintProblem
-
 
 ID = 'document-end'
 TYPE = 'token'
@@ -90,8 +87,7 @@ def check(conf, token, prev, next, nextnext, context):
         is_stream_end = isinstance(token, yaml.StreamEndToken)
         is_start = isinstance(token, yaml.DocumentStartToken)
         prev_is_end_or_stream_start = isinstance(
-            prev, (yaml.DocumentEndToken, yaml.StreamStartToken)
-        )
+            prev, (yaml.DocumentEndToken, yaml.StreamStartToken))
 
         if is_stream_end and not prev_is_end_or_stream_start:
             yield LintProblem(token.start_mark.line, 1,

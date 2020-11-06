@@ -35,9 +35,9 @@ class LineLengthTestCase(RuleTestCase):
         self.check('---\n' + 81 * 'a' + '\n', conf)
         self.check(1000 * 'b', conf)
         self.check('---\n' + 1000 * 'b' + '\n', conf)
-        self.check('content: |\n'
-                   '  {% this line is' + 99 * ' really' + ' long %}\n',
-                   conf)
+        self.check(
+            'content: |\n'
+            '  {% this line is' + 99 * ' really' + ' long %}\n', conf)
 
     def test_default(self):
         conf = ('line-length: {max: 80}\n'
@@ -71,106 +71,136 @@ class LineLengthTestCase(RuleTestCase):
     def test_non_breakable_word(self):
         conf = 'line-length: {max: 20, allow-non-breakable-words: true}'
         self.check('---\n' + 30 * 'A' + '\n', conf)
+        self.check(
+            '---\n'
+            'this:\n'
+            '  is:\n'
+            '    - a:\n'
+            '        http://localhost/very/long/url\n'
+            '...\n', conf)
+        self.check(
+            '---\n'
+            'this:\n'
+            '  is:\n'
+            '    - a:\n'
+            '        # http://localhost/very/long/url\n'
+            '        comment\n'
+            '...\n', conf)
+        self.check(
+            '---\n'
+            'this:\n'
+            'is:\n'
+            'another:\n'
+            '  - https://localhost/very/very/long/url\n'
+            '...\n', conf)
         self.check('---\n'
-                   'this:\n'
-                   '  is:\n'
-                   '    - a:\n'
-                   '        http://localhost/very/long/url\n'
-                   '...\n', conf)
-        self.check('---\n'
-                   'this:\n'
-                   '  is:\n'
-                   '    - a:\n'
-                   '        # http://localhost/very/long/url\n'
-                   '        comment\n'
-                   '...\n', conf)
-        self.check('---\n'
-                   'this:\n'
-                   'is:\n'
-                   'another:\n'
-                   '  - https://localhost/very/very/long/url\n'
-                   '...\n', conf)
-        self.check('---\n'
-                   'long_line: http://localhost/very/very/long/url\n', conf,
+                   'long_line: http://localhost/very/very/long/url\n',
+                   conf,
                    problem=(2, 21))
 
         conf = 'line-length: {max: 20, allow-non-breakable-words: false}'
         self.check('---\n' + 30 * 'A' + '\n', conf, problem=(2, 21))
-        self.check('---\n'
-                   'this:\n'
-                   '  is:\n'
-                   '    - a:\n'
-                   '        http://localhost/very/long/url\n'
-                   '...\n', conf, problem=(5, 21))
-        self.check('---\n'
-                   'this:\n'
-                   '  is:\n'
-                   '    - a:\n'
-                   '        # http://localhost/very/long/url\n'
-                   '        comment\n'
-                   '...\n', conf, problem=(5, 21))
-        self.check('---\n'
-                   'this:\n'
-                   'is:\n'
-                   'another:\n'
-                   '  - https://localhost/very/very/long/url\n'
-                   '...\n', conf, problem=(5, 21))
-        self.check('---\n'
-                   'long_line: http://localhost/very/very/long/url\n'
-                   '...\n', conf, problem=(2, 21))
+        self.check(
+            '---\n'
+            'this:\n'
+            '  is:\n'
+            '    - a:\n'
+            '        http://localhost/very/long/url\n'
+            '...\n',
+            conf,
+            problem=(5, 21))
+        self.check(
+            '---\n'
+            'this:\n'
+            '  is:\n'
+            '    - a:\n'
+            '        # http://localhost/very/long/url\n'
+            '        comment\n'
+            '...\n',
+            conf,
+            problem=(5, 21))
+        self.check(
+            '---\n'
+            'this:\n'
+            'is:\n'
+            'another:\n'
+            '  - https://localhost/very/very/long/url\n'
+            '...\n',
+            conf,
+            problem=(5, 21))
+        self.check(
+            '---\n'
+            'long_line: http://localhost/very/very/long/url\n'
+            '...\n',
+            conf,
+            problem=(2, 21))
 
         conf = ('line-length: {max: 20, allow-non-breakable-words: true}\n'
                 'trailing-spaces: disable')
-        self.check('---\n'
-                   'loooooooooong+word+and+some+space+at+the+end       \n',
-                   conf, problem=(2, 21))
+        self.check(
+            '---\n'
+            'loooooooooong+word+and+some+space+at+the+end       \n',
+            conf,
+            problem=(2, 21))
 
     def test_non_breakable_inline_mappings(self):
         conf = 'line-length: {max: 20, ' \
                'allow-non-breakable-inline-mappings: true}'
-        self.check('---\n'
-                   'long_line: http://localhost/very/very/long/url\n'
-                   'long line: http://localhost/very/very/long/url\n', conf)
-        self.check('---\n'
-                   '- long line: http://localhost/very/very/long/url\n', conf)
+        self.check(
+            '---\n'
+            'long_line: http://localhost/very/very/long/url\n'
+            'long line: http://localhost/very/very/long/url\n', conf)
+        self.check(
+            '---\n'
+            '- long line: http://localhost/very/very/long/url\n', conf)
 
-        self.check('---\n'
-                   'long_line: http://localhost/short/url + word\n'
-                   'long line: http://localhost/short/url + word\n',
-                   conf, problem1=(2, 21), problem2=(3, 21))
+        self.check(
+            '---\n'
+            'long_line: http://localhost/short/url + word\n'
+            'long line: http://localhost/short/url + word\n',
+            conf,
+            problem1=(2, 21),
+            problem2=(3, 21))
 
         conf = ('line-length: {max: 20,'
                 '              allow-non-breakable-inline-mappings: true}\n'
                 'trailing-spaces: disable')
         self.check('---\n'
                    'long_line: and+some+space+at+the+end       \n',
-                   conf, problem=(2, 21))
+                   conf,
+                   problem=(2, 21))
         self.check('---\n'
                    'long line: and+some+space+at+the+end       \n',
-                   conf, problem=(2, 21))
+                   conf,
+                   problem=(2, 21))
         self.check('---\n'
                    '- long line: and+some+space+at+the+end       \n',
-                   conf, problem=(2, 21))
+                   conf,
+                   problem=(2, 21))
 
         # See https://github.com/adrienverge/yamllint/issues/21
         conf = 'line-length: {allow-non-breakable-inline-mappings: true}'
         self.check('---\n'
                    'content: |\n'
                    '  {% this line is' + 99 * ' really' + ' long %}\n',
-                   conf, problem=(3, 81))
+                   conf,
+                   problem=(3, 81))
 
     @unittest.skipIf(sys.version_info < (3, 0), 'Python 2 not supported')
     def test_unicode(self):
         conf = 'line-length: {max: 53}'
-        self.check('---\n'
-                   '# This is a test to check if “line-length” works nice\n'
-                   'with: “unicode characters” that span across bytes! ↺\n',
-                   conf)
+        self.check(
+            '---\n'
+            '# This is a test to check if “line-length” works nice\n'
+            'with: “unicode characters” that span across bytes! ↺\n', conf)
         conf = 'line-length: {max: 52}'
-        self.check('---\n'
-                   '# This is a test to check if “line-length” works nice\n'
-                   'with: “unicode characters” that span across bytes! ↺\n',
-                   conf, problem1=(2, 53), problem2=(3, 53))
+        self.check(
+            '---\n'
+            '# This is a test to check if “line-length” works nice\n'
+            'with: “unicode characters” that span across bytes! ↺\n',
+            conf,
+            problem1=(2, 53),
+            problem2=(3, 53))
 
     def test_with_dos_newlines(self):
         conf = ('line-length: {max: 10}\n'

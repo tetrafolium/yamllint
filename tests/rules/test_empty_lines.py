@@ -49,7 +49,8 @@ class EmptyLinesTestCase(RuleTestCase):
     def test_10_empty_lines(self):
         conf = 'empty-lines: {max: 10, max-start: 0, max-end: 0}'
         self.check('---\nintro\n\n\n\n\n\n\n\n\n\n\nconclusion\n', conf)
-        self.check('---\nintro\n\n\n\n\n\n\n\n\n\n\n\nconclusion\n', conf,
+        self.check('---\nintro\n\n\n\n\n\n\n\n\n\n\n\nconclusion\n',
+                   conf,
                    problem=(13, 1))
 
     def test_spaces(self):
@@ -85,15 +86,15 @@ class EmptyLinesTestCase(RuleTestCase):
                 'document-start: disable\n')
         self.check('---\r\n', conf)
         self.check('---\r\ntext\r\n\r\ntext\r\n', conf)
-        self.check('\r\n---\r\ntext\r\n\r\ntext\r\n', conf,
-                   problem=(1, 1))
-        self.check('\r\n\r\n\r\n---\r\ntext\r\n\r\ntext\r\n', conf,
+        self.check('\r\n---\r\ntext\r\n\r\ntext\r\n', conf, problem=(1, 1))
+        self.check('\r\n\r\n\r\n---\r\ntext\r\n\r\ntext\r\n',
+                   conf,
                    problem=(3, 1))
-        self.check('---\r\ntext\r\n\r\n\r\n\r\ntext\r\n', conf,
-                   problem=(5, 1))
-        self.check('---\r\ntext\r\n\r\n\r\n\r\n\r\n\r\n\r\ntext\r\n', conf,
+        self.check('---\r\ntext\r\n\r\n\r\n\r\ntext\r\n', conf, problem=(5, 1))
+        self.check('---\r\ntext\r\n\r\n\r\n\r\n\r\n\r\n\r\ntext\r\n',
+                   conf,
                    problem=(8, 1))
-        self.check('---\r\ntext\r\n\r\ntext\r\n\r\n', conf,
-                   problem=(5, 1))
-        self.check('---\r\ntext\r\n\r\ntext\r\n\r\n\r\n\r\n', conf,
+        self.check('---\r\ntext\r\n\r\ntext\r\n\r\n', conf, problem=(5, 1))
+        self.check('---\r\ntext\r\n\r\ntext\r\n\r\n\r\n\r\n',
+                   conf,
                    problem=(7, 1))

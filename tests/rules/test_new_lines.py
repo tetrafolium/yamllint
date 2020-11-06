@@ -21,8 +21,7 @@ class NewLinesTestCase(RuleTestCase):
     rule_id = 'new-lines'
 
     def test_disabled(self):
-        conf = ('new-line-at-end-of-file: disable\n'
-                'new-lines: disable\n')
+        conf = ('new-line-at-end-of-file: disable\n' 'new-lines: disable\n')
         self.check('', conf)
         self.check('\n', conf)
         self.check('\r', conf)

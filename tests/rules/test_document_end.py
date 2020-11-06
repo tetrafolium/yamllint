@@ -22,53 +22,50 @@ class DocumentEndTestCase(RuleTestCase):
 
     def test_disabled(self):
         conf = 'document-end: disable'
-        self.check('---\n'
-                   'with:\n'
-                   '  document: end\n'
-                   '...\n', conf)
-        self.check('---\n'
-                   'without:\n'
-                   '  document: end\n', conf)
+        self.check('---\n' 'with:\n' '  document: end\n' '...\n', conf)
+        self.check('---\n' 'without:\n' '  document: end\n', conf)
 
     def test_required(self):
         conf = 'document-end: {present: true}'
         self.check('', conf)
         self.check('\n', conf)
-        self.check('---\n'
-                   'with:\n'
-                   '  document: end\n'
-                   '...\n', conf)
+        self.check('---\n' 'with:\n' '  document: end\n' '...\n', conf)
         self.check('---\n'
                    'without:\n'
-                   '  document: end\n', conf, problem=(3, 1))
+                   '  document: end\n',
+                   conf,
+                   problem=(3, 1))
 
     def test_forbidden(self):
         conf = 'document-end: {present: false}'
         self.check('---\n'
                    'with:\n'
                    '  document: end\n'
-                   '...\n', conf, problem=(4, 1))
-        self.check('---\n'
-                   'without:\n'
-                   '  document: end\n', conf)
+                   '...\n',
+                   conf,
+                   problem=(4, 1))
+        self.check('---\n' 'without:\n' '  document: end\n', conf)
 
     def test_multiple_documents(self):
-        conf = ('document-end: {present: true}\n'
-                'document-start: disable\n')
-        self.check('---\n'
-                   'first: document\n'
-                   '...\n'
-                   '---\n'
-                   'second: document\n'
-                   '...\n'
-                   '---\n'
-                   'third: document\n'
-                   '...\n', conf)
-        self.check('---\n'
-                   'first: document\n'
-                   '...\n'
-                   '---\n'
-                   'second: document\n'
-                   '---\n'
-                   'third: document\n'
-                   '...\n', conf, problem=(6, 1))
+        conf = ('document-end: {present: true}\n' 'document-start: disable\n')
+        self.check(
+            '---\n'
+            'first: document\n'
+            '...\n'
+            '---\n'
+            'second: document\n'
+            '...\n'
+            '---\n'
+            'third: document\n'
+            '...\n', conf)
+        self.check(
+            '---\n'
+            'first: document\n'
+            '...\n'
+            '---\n'
+            'second: document\n'
+            '---\n'
+            'third: document\n'
+            '...\n',
+            conf,
+            problem=(6, 1))

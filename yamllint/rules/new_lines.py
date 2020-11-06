@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to force the type of new line characters.
 
@@ -23,9 +22,7 @@ Use this rule to force the type of new line characters.
   ``dos`` to use DOS-typed new line characters (``\\r\\n``).
 """
 
-
 from yamllint.linter import LintProblem
-
 
 ID = 'new-lines'
 TYPE = 'line'
@@ -36,8 +33,8 @@ DEFAULT = {'type': 'unix'}
 def check(conf, line):
     if line.start == 0 and len(line.buffer) > line.end:
         if conf['type'] == 'dos':
-            if (line.end + 2 > len(line.buffer) or
-                    line.buffer[line.end:line.end + 2] != '\r\n'):
+            if (line.end + 2 > len(line.buffer)
+                    or line.buffer[line.end:line.end + 2] != '\r\n'):
                 yield LintProblem(1, line.end - line.start + 1,
                                   'wrong new line character: expected \\r\\n')
         else:

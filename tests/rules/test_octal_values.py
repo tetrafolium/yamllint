@@ -38,8 +38,7 @@ class OctalValuesTestCase(RuleTestCase):
         self.check('user-city: 010,0571', conf)
         self.check("user-city: '010'", conf)
         self.check('user-city: "010"', conf)
-        self.check('user-city:\n'
-                   '  - 010', conf, problem=(2, 8))
+        self.check('user-city:\n' '  - 010', conf, problem=(2, 8))
         self.check('user-city: [010]', conf, problem=(1, 16))
         self.check('user-city: {beijing: 010}', conf, problem=(1, 25))
         self.check('explicit-octal: 0o10', conf)
@@ -61,8 +60,7 @@ class OctalValuesTestCase(RuleTestCase):
         self.check('user-city: abc', conf)
         self.check('user-city: 0o10,0571', conf)
         self.check("user-city: '0o10'", conf)
-        self.check('user-city:\n'
-                   '  - 0o10', conf, problem=(2, 9))
+        self.check('user-city:\n' '  - 0o10', conf, problem=(2, 9))
         self.check('user-city: [0o10]', conf, problem=(1, 17))
         self.check('user-city: {beijing: 0o10}', conf, problem=(1, 26))
         self.check('implicit-octal: 010', conf)

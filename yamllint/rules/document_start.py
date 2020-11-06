@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to require or forbid the use of document start marker (``---``).
 
@@ -63,11 +62,9 @@ Use this rule to require or forbid the use of document start marker (``---``).
     ...
 """
 
-
 import yaml
 
 from yamllint.linter import LintProblem
-
 
 ID = 'document-start'
 TYPE = 'token'
@@ -77,12 +74,11 @@ DEFAULT = {'present': True}
 
 def check(conf, token, prev, next, nextnext, context):
     if conf['present']:
-        if (isinstance(prev, (yaml.StreamStartToken,
-                              yaml.DocumentEndToken,
+        if (isinstance(prev, (yaml.StreamStartToken, yaml.DocumentEndToken,
                               yaml.DirectiveToken)) and
-            not isinstance(token, (yaml.DocumentStartToken,
-                                   yaml.DirectiveToken,
-                                   yaml.StreamEndToken))):
+                not isinstance(token,
+                               (yaml.DocumentStartToken, yaml.DirectiveToken,
+                                yaml.StreamEndToken))):
             yield LintProblem(token.start_mark.line + 1, 1,
                               'missing document start "---"')
 

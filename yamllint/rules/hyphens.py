@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to control the number of spaces after hyphens (``-``).
 
@@ -67,11 +66,9 @@ Use this rule to control the number of spaces after hyphens (``-``).
     -  key42
 """
 
-
 import yaml
 
 from yamllint.rules.common import spaces_after
-
 
 ID = 'hyphens'
 TYPE = 'token'
@@ -81,7 +78,9 @@ DEFAULT = {'max-spaces-after': 1}
 
 def check(conf, token, prev, next, nextnext, context):
     if isinstance(token, yaml.BlockEntryToken):
-        problem = spaces_after(token, prev, next,
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                max=conf['max-spaces-after'],
                                max_desc='too many spaces after hyphen')
         if problem is not None:

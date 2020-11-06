@@ -37,6 +37,4 @@ class NewLineAtEndOfFileTestCase(RuleTestCase):
         self.check('\n', conf)
         self.check('word', conf, problem=(1, 5))
         self.check('Sentence.\n', conf)
-        self.check('---\n'
-                   'yaml: document\n'
-                   '...', conf, problem=(3, 4))
+        self.check('---\n' 'yaml: document\n' '...', conf, problem=(3, 4))

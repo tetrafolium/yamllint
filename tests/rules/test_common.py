@@ -23,9 +23,7 @@ from yamllint.rules.common import get_line_indent
 
 class CommonTestCase(unittest.TestCase):
     def test_get_line_indent(self):
-        tokens = list(yaml.scan('a: 1\n'
-                                'b:\n'
-                                '  - c: [2, 3, {d: 4}]\n'))
+        tokens = list(yaml.scan('a: 1\n' 'b:\n' '  - c: [2, 3, {d: 4}]\n'))
 
         self.assertEqual(tokens[3].value, 'a')
         self.assertEqual(tokens[5].value, '1')
@@ -38,7 +36,7 @@ class CommonTestCase(unittest.TestCase):
 
         for i in (3, 5):
             self.assertEqual(get_line_indent(tokens[i]), 0)
-        for i in (7,):
+        for i in (7, ):
             self.assertEqual(get_line_indent(tokens[i]), 0)
         for i in (13, 16, 18, 22, 24):
             self.assertEqual(get_line_indent(tokens[i]), 2)

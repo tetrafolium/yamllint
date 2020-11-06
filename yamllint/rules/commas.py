@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to control the number of spaces before and after commas (``,``).
 
@@ -91,38 +90,44 @@ Use this rule to control the number of spaces before and after commas (``,``).
       [10, 20,30, {x: 1, y: 2}]
 """
 
-
 import yaml
 
 from yamllint.linter import LintProblem
 from yamllint.rules.common import spaces_after, spaces_before
 
-
 ID = 'commas'
 TYPE = 'token'
-CONF = {'max-spaces-before': int,
-        'min-spaces-after': int,
-        'max-spaces-after': int}
-DEFAULT = {'max-spaces-before': 0,
-           'min-spaces-after': 1,
-           'max-spaces-after': 1}
+CONF = {
+    'max-spaces-before': int,
+    'min-spaces-after': int,
+    'max-spaces-after': int
+}
+DEFAULT = {
+    'max-spaces-before': 0,
+    'min-spaces-after': 1,
+    'max-spaces-after': 1
+}
 
 
 def check(conf, token, prev, next, nextnext, context):
     if isinstance(token, yaml.FlowEntryToken):
-        if (prev is not None and conf['max-spaces-before'] != -1 and
-                prev.end_mark.line < token.start_mark.line):
+        if (prev is not None and conf['max-spaces-before'] != -1
+                and prev.end_mark.line < token.start_mark.line):
             yield LintProblem(token.start_mark.line + 1,
                               max(1, token.start_mark.column),
                               'too many spaces before comma')
         else:
-            problem = spaces_before(token, prev, next,
+            problem = spaces_before(token,
+                                    prev,
+                                    next,
                                     max=conf['max-spaces-before'],
                                     max_desc='too many spaces before comma')
             if problem is not None:
                 yield problem
 
-        problem = spaces_after(token, prev, next,
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                min=conf['min-spaces-after'],
                                max=conf['max-spaces-after'],
                                min_desc='too few spaces after comma',

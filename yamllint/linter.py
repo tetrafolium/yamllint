@@ -20,7 +20,6 @@ import yaml
 
 from yamllint import parser
 
-
 PROBLEM_LEVELS = {
     0: None,
     1: 'warning',
@@ -33,7 +32,6 @@ PROBLEM_LEVELS = {
 
 class LintProblem(object):
     """Represents a linting problem found by yamllint."""
-
     def __init__(self, line, column, desc='<no description>', rule=None):
         #: Line on which the problem was found (starting at 1)
         self.line = line
@@ -52,13 +50,12 @@ class LintProblem(object):
         return self.desc
 
     def __eq__(self, other):
-        return (self.line == other.line and
-                self.column == other.column and
-                self.rule == other.rule)
+        return (self.line == other.line and self.column == other.column
+                and self.rule == other.rule)
 
     def __lt__(self, other):
-        return (self.line < other.line or
-                (self.line == other.line and self.column < other.column))
+        return (self.line < other.line
+                or (self.line == other.line and self.column < other.column))
 
     def __repr__(self):
         return '%d:%d: %s' % (self.line, self.column, self.message)
@@ -135,9 +132,8 @@ def get_cosmetic_problems(buffer, conf, filepath):
         if isinstance(elem, parser.Token):
             for rule in token_rules:
                 rule_conf = conf.rules[rule.ID]
-                for problem in rule.check(rule_conf,
-                                          elem.curr, elem.prev, elem.next,
-                                          elem.nextnext,
+                for problem in rule.check(rule_conf, elem.curr, elem.prev,
+                                          elem.next, elem.nextnext,
                                           context[rule.ID]):
                     problem.rule = rule.ID
                     problem.level = rule_conf['level']
@@ -166,8 +162,8 @@ def get_cosmetic_problems(buffer, conf, filepath):
             # This is the last token/comment/line of this line, let's flush the
             # problems found (but filter them according to the directives)
             for problem in cache:
-                if not (disabled_for_line.is_disabled_by_directive(problem) or
-                        disabled.is_disabled_by_directive(problem)):
+                if not (disabled_for_line.is_disabled_by_directive(problem)
+                        or disabled.is_disabled_by_directive(problem)):
                     yield problem
 
             disabled_for_line = disabled_for_next_line
@@ -200,15 +196,15 @@ def _run(buffer, conf, filepath):
 
     for problem in get_cosmetic_problems(buffer, conf, filepath):
         # Insert the syntax error (if any) at the right place...
-        if (syntax_error and syntax_error.line <= problem.line and
-                syntax_error.column <= problem.column):
+        if (syntax_error and syntax_error.line <= problem.line
+                and syntax_error.column <= problem.column):
             yield syntax_error
 
             # If there is already a yamllint error at the same place, discard
             # it as it is probably redundant (and maybe it's just a 'warning',
             # in which case the script won't even exit with a failure status).
-            if (syntax_error.line == problem.line and
-                    syntax_error.column == problem.column):
+            if (syntax_error.line == problem.line
+                    and syntax_error.column == problem.column):
                 syntax_error = None
                 continue
 

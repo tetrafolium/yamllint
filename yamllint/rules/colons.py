@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to control the number of spaces before and after colons (``:``).
 
@@ -69,36 +68,38 @@ Use this rule to control the number of spaces before and after colons (``:``).
     third: 3
 """
 
-
 import yaml
 
 from yamllint.rules.common import is_explicit_key, spaces_after, spaces_before
 
-
 ID = 'colons'
 TYPE = 'token'
-CONF = {'max-spaces-before': int,
-        'max-spaces-after': int}
-DEFAULT = {'max-spaces-before': 0,
-           'max-spaces-after': 1}
+CONF = {'max-spaces-before': int, 'max-spaces-after': int}
+DEFAULT = {'max-spaces-before': 0, 'max-spaces-after': 1}
 
 
 def check(conf, token, prev, next, nextnext, context):
     if isinstance(token, yaml.ValueToken):
-        problem = spaces_before(token, prev, next,
+        problem = spaces_before(token,
+                                prev,
+                                next,
                                 max=conf['max-spaces-before'],
                                 max_desc='too many spaces before colon')
         if problem is not None:
             yield problem
 
-        problem = spaces_after(token, prev, next,
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                max=conf['max-spaces-after'],
                                max_desc='too many spaces after colon')
         if problem is not None:
             yield problem
 
     if isinstance(token, yaml.KeyToken) and is_explicit_key(token):
-        problem = spaces_after(token, prev, next,
+        problem = spaces_after(token,
+                               prev,
+                               next,
                                max=conf['max-spaces-after'],
                                max_desc='too many spaces after question mark')
         if problem is not None:

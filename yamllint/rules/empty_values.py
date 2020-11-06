@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to prevent nodes with empty content, that implicitly result in
 ``null`` values.
@@ -70,27 +69,24 @@ import yaml
 
 from yamllint.linter import LintProblem
 
-
 ID = 'empty-values'
 TYPE = 'token'
-CONF = {'forbid-in-block-mappings': bool,
-        'forbid-in-flow-mappings': bool}
-DEFAULT = {'forbid-in-block-mappings': True,
-           'forbid-in-flow-mappings': True}
+CONF = {'forbid-in-block-mappings': bool, 'forbid-in-flow-mappings': bool}
+DEFAULT = {'forbid-in-block-mappings': True, 'forbid-in-flow-mappings': True}
 
 
 def check(conf, token, prev, next, nextnext, context):
 
     if conf['forbid-in-block-mappings']:
-        if isinstance(token, yaml.ValueToken) and isinstance(next, (
-                yaml.KeyToken, yaml.BlockEndToken)):
+        if isinstance(token, yaml.ValueToken) and isinstance(
+                next, (yaml.KeyToken, yaml.BlockEndToken)):
             yield LintProblem(token.start_mark.line + 1,
                               token.end_mark.column + 1,
                               'empty value in block mapping')
 
     if conf['forbid-in-flow-mappings']:
-        if isinstance(token, yaml.ValueToken) and isinstance(next, (
-                yaml.FlowEntryToken, yaml.FlowMappingEndToken)):
+        if isinstance(token, yaml.ValueToken) and isinstance(
+                next, (yaml.FlowEntryToken, yaml.FlowMappingEndToken)):
             yield LintProblem(token.start_mark.line + 1,
                               token.end_mark.column + 1,
                               'empty value in flow mapping')

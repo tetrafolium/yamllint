@@ -16,9 +16,8 @@
 
 from setuptools import find_packages, setup
 
-from yamllint import (__author__, __license__,
-                      APP_NAME, APP_VERSION, APP_DESCRIPTION)
-
+from yamllint import (__author__, __license__, APP_NAME, APP_VERSION,
+                      APP_DESCRIPTION)
 
 setup(
     name=APP_NAME,
@@ -48,7 +47,6 @@ setup(
         'Topic :: Software Development :: Quality Assurance',
         'Topic :: Software Development :: Testing',
     ],
-
     packages=find_packages(exclude=['tests', 'tests.*']),
     entry_points={'console_scripts': ['yamllint=yamllint.cli:run']},
     package_data={'yamllint': ['conf/*.yaml']},

@@ -22,85 +22,82 @@ class HyphenTestCase(RuleTestCase):
 
     def test_disabled(self):
         conf = 'hyphens: disable'
-        self.check('---\n'
-                   '- elem1\n'
-                   '- elem2\n', conf)
-        self.check('---\n'
-                   '- elem1\n'
-                   '-  elem2\n', conf)
-        self.check('---\n'
-                   '-  elem1\n'
-                   '-  elem2\n', conf)
-        self.check('---\n'
-                   '-  elem1\n'
-                   '- elem2\n', conf)
-        self.check('---\n'
-                   'object:\n'
-                   '  - elem1\n'
-                   '  -  elem2\n', conf)
-        self.check('---\n'
-                   'object:\n'
-                   '  -  elem1\n'
-                   '  -  elem2\n', conf)
-        self.check('---\n'
-                   'object:\n'
-                   '  subobject:\n'
-                   '    - elem1\n'
-                   '    -  elem2\n', conf)
-        self.check('---\n'
-                   'object:\n'
-                   '  subobject:\n'
-                   '    -  elem1\n'
-                   '    -  elem2\n', conf)
+        self.check('---\n' '- elem1\n' '- elem2\n', conf)
+        self.check('---\n' '- elem1\n' '-  elem2\n', conf)
+        self.check('---\n' '-  elem1\n' '-  elem2\n', conf)
+        self.check('---\n' '-  elem1\n' '- elem2\n', conf)
+        self.check('---\n' 'object:\n' '  - elem1\n' '  -  elem2\n', conf)
+        self.check('---\n' 'object:\n' '  -  elem1\n' '  -  elem2\n', conf)
+        self.check(
+            '---\n'
+            'object:\n'
+            '  subobject:\n'
+            '    - elem1\n'
+            '    -  elem2\n', conf)
+        self.check(
+            '---\n'
+            'object:\n'
+            '  subobject:\n'
+            '    -  elem1\n'
+            '    -  elem2\n', conf)
 
     def test_enabled(self):
         conf = 'hyphens: {max-spaces-after: 1}'
-        self.check('---\n'
-                   '- elem1\n'
-                   '- elem2\n', conf)
-        self.check('---\n'
-                   '- elem1\n'
-                   '-  elem2\n', conf, problem=(3, 3))
+        self.check('---\n' '- elem1\n' '- elem2\n', conf)
+        self.check('---\n' '- elem1\n' '-  elem2\n', conf, problem=(3, 3))
         self.check('---\n'
                    '-  elem1\n'
-                   '-  elem2\n', conf, problem1=(2, 3), problem2=(3, 3))
-        self.check('---\n'
-                   '-  elem1\n'
-                   '- elem2\n', conf, problem=(2, 3))
+                   '-  elem2\n',
+                   conf,
+                   problem1=(2, 3),
+                   problem2=(3, 3))
+        self.check('---\n' '-  elem1\n' '- elem2\n', conf, problem=(2, 3))
         self.check('---\n'
                    'object:\n'
                    '  - elem1\n'
-                   '  -  elem2\n', conf, problem=(4, 5))
+                   '  -  elem2\n',
+                   conf,
+                   problem=(4, 5))
         self.check('---\n'
                    'object:\n'
                    '  -  elem1\n'
-                   '  -  elem2\n', conf, problem1=(3, 5), problem2=(4, 5))
-        self.check('---\n'
-                   'object:\n'
-                   '  subobject:\n'
-                   '    - elem1\n'
-                   '    -  elem2\n', conf, problem=(5, 7))
-        self.check('---\n'
-                   'object:\n'
-                   '  subobject:\n'
-                   '    -  elem1\n'
-                   '    -  elem2\n', conf, problem1=(4, 7), problem2=(5, 7))
+                   '  -  elem2\n',
+                   conf,
+                   problem1=(3, 5),
+                   problem2=(4, 5))
+        self.check(
+            '---\n'
+            'object:\n'
+            '  subobject:\n'
+            '    - elem1\n'
+            '    -  elem2\n',
+            conf,
+            problem=(5, 7))
+        self.check(
+            '---\n'
+            'object:\n'
+            '  subobject:\n'
+            '    -  elem1\n'
+            '    -  elem2\n',
+            conf,
+            problem1=(4, 7),
+            problem2=(5, 7))
 
     def test_max_3(self):
         conf = 'hyphens: {max-spaces-after: 3}'
-        self.check('---\n'
-                   '-   elem1\n'
-                   '-   elem2\n', conf)
-        self.check('---\n'
-                   '-    elem1\n'
-                   '-   elem2\n', conf, problem=(2, 5))
+        self.check('---\n' '-   elem1\n' '-   elem2\n', conf)
+        self.check('---\n' '-    elem1\n' '-   elem2\n', conf, problem=(2, 5))
         self.check('---\n'
                    'a:\n'
                    '  b:\n'
                    '    -   elem1\n'
                    '    -   elem2\n', conf)
-        self.check('---\n'
-                   'a:\n'
-                   '  b:\n'
-                   '    -    elem1\n'
-                   '    -    elem2\n', conf, problem1=(4, 9), problem2=(5, 9))
+        self.check(
+            '---\n'
+            'a:\n'
+            '  b:\n'
+            '    -    elem1\n'
+            '    -    elem2\n',
+            conf,
+            problem1=(4, 9),
+            problem2=(5, 9))

@@ -13,7 +13,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 """
 Use this rule to enforce alphabetical ordering of keys in mappings. The sorting
 order uses the Unicode code point number. As a result, the ordering is
@@ -69,7 +68,6 @@ import yaml
 
 from yamllint.linter import LintProblem
 
-
 ID = 'key-ordering'
 TYPE = 'token'
 
@@ -86,18 +84,18 @@ def check(conf, token, prev, next, nextnext, context):
     if 'stack' not in context:
         context['stack'] = []
 
-    if isinstance(token, (yaml.BlockMappingStartToken,
-                          yaml.FlowMappingStartToken)):
+    if isinstance(token,
+                  (yaml.BlockMappingStartToken, yaml.FlowMappingStartToken)):
         context['stack'].append(Parent(MAP))
-    elif isinstance(token, (yaml.BlockSequenceStartToken,
-                            yaml.FlowSequenceStartToken)):
+    elif isinstance(
+            token,
+        (yaml.BlockSequenceStartToken, yaml.FlowSequenceStartToken)):
         context['stack'].append(Parent(SEQ))
-    elif isinstance(token, (yaml.BlockEndToken,
-                            yaml.FlowMappingEndToken,
+    elif isinstance(token, (yaml.BlockEndToken, yaml.FlowMappingEndToken,
                             yaml.FlowSequenceEndToken)):
         context['stack'].pop()
-    elif (isinstance(token, yaml.KeyToken) and
-          isinstance(next, yaml.ScalarToken)):
+    elif (isinstance(token, yaml.KeyToken)
+          and isinstance(next, yaml.ScalarToken)):
         # This check is done because KeyTokens can be found inside flow
         # sequences... strange, but allowed.
         if len(context['stack']) > 0 and context['stack'][-1].type == MAP:
